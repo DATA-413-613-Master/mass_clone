@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Runs clone_all.sh with defaults, designed to be user editable
+# e.g., once in the mass_clone directory run: bash clone_all_helper_example.sh hw-02
 
 # Written By: Brian Konzman
 
@@ -17,9 +18,9 @@ else
 	assignment=$1
 
 	#edit these variables to your defaults
-	organization="Organization"
-	username="username"
-	protocol="ssh"
+	organization="STAT-413-613-Fall-2020"
+	username="rressler"
+	protocol="https"
 
 	./clone_all.sh ${organization} ${assignment} ${username} ${protocol}
 fi

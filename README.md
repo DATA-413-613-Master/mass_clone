@@ -26,3 +26,5 @@ Used the commit message "Graded", but can be changed.
 This script runs clone_all.sh with three arguments as defaults, Organization, username, and protocol
 
 The script takes one argument, the unique identifier.
+
+Example `bash clone_all_helper_example.sh hw-02`
