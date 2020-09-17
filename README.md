@@ -21,7 +21,7 @@ Takes 1 argument, the unique identifier(folder containing repos)
 
 Used the commit message "Graded", but can be changed.
 
-# clone_all_helper.sh
+# clone_all_main.sh
 
 This script runs clone_all.sh with three arguments as defaults, Organization, username, and protocol
 
