@@ -1,79 +1,32 @@
 #!/bin/sh
 
-# github api reference
-# https://developer.github.com/v3/
+# Runs clone_all_base.sh with defaults, designed to be user editable
+# e.g., once in the mass_clone directory run: bash clone_all_helper_example.sh hw-02
 
-# Written By: Brian Konzman
+# Written By: Brian Konzman and Updated by Richard Ressler to use Key Chain for Mac
 
 
-if [[ $# -ne 4 ]];
+if [[ $# -ne 1 ]];
 	then
 	echo ""
-	echo "This script will clone groups of repos from an organization using an identifier"
-	echo "This identifier can be the name of the assignment for github classroom repos"
-	echo "or some common identifier across multiple repos"
+	echo "This script is designed to be edited by the user and will run clone_all_base.sh with defaults"
 	echo ""
-	echo "Please provide 4 parameters in this order:"
-	echo "1. Name of Organization (GitHubClassroom)"
-	echo "2. Name of Identifier (assignment)"
-	echo "3. Your github username"
-	echo "4. The protocol for cloning the repo (ssh/https)"
-	echo ""
-	echo "note: To use ssh, you must set up an ssh key with github"
-	echo "You may find it useful to set up your shell to know your GitHub credentials for https"
+	echo "Please provide 1 parameter:"
+	echo "1. Name of unique identifier(assignment)"
 else
-	organization=$1
-	identifier=$2
-	githubUsername=$3
-	tag=$4
 
-	if [ "$tag" == "https" ];
-		then
-		tag="clone_url"
-		echo "Using https"
-	else
-		tag="ssh_url"
-		echo "Using ssh"
-	fi
+	assignment=$1
 
-	echo "Enter Github Password:"
-	read -s githubPassword
+	#edit these variables to your defaults
+	organization="STAT-413-613-Fall-2020"
+	GHusername="rressler"
+	protocol="https"
 
-	# Get the first page of repo results (100 entries)
-	rawJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100" -v)
-	# Get the line that tells if this is the last page
-    numRepos=$(echo "$rawJSON" | grep -o "full_name" | wc -l)
-	page=2
-
-	# While we have not seen the last page
-	while [[ "$numRepos" -eq "100" ]]; do
-		# Get next page
-		tempJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100&page=$page" -v)
-		numRepos=$(echo "$tempJSON" | grep -o "full_name" | wc -l)
-
-		#concatenate tempJSON on to rawJSON
-		rawJSON=$rawJSON$tempJSON
-		((page++))
-	done
-	# grep full lines that have the same tag identifier
-	fullLines=$(echo "$rawJSON" | grep "$tag" )
-
-	# grep just the url
-	justURLs=$(echo "$fullLines" | grep -o "[^\"]*"$identifier"[^\"]*")
-
-	((lengthOfIdentifier=${#identifier}+2))
-
-	# Make subdirectory and move to it
-	mkdir -p ../${identifier}
-	cd ../${identifier}
-
-	while read -r url; do
-		dir=$(basename ${url})
-		dir=${dir//.git}
-		if [ -d ${dir} ]; then
-			git -C ${dir} pull
-		else
-			git clone ${url}
-		fi
-	done <<< "$justURLs"
+# Choose one of the following two lines to comment out: Line 1 is for using Passwrods or PATs in Mac Keychain
+# Line 2 is for interactive entry of password or PAT
+# Line 1 requires editing the clone_all_base_mac_keychain.sh file to add the Mac user info for the PW/PAT
+	./clone_all_base_mac_keychain.sh ${organization} ${assignment} ${GHusername} ${protocol}
+#	./clone_all_base_pw_entry.sh ${organization} ${assignment} ${GHusername} ${protocol}
 fi
+
+
