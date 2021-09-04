@@ -1,8 +1,10 @@
 #!/bin/sh
 # github api reference
 # https://developer.github.com/v3/
-# Written By: Brian Konzman and Updated by Richard Ressler to allow for GitHUb PAT from Mac OS
-
+# Written By: Brian Konzman and Updated by Richard Ressler to allow for GitHub PAT from Mac OS
+# Only edit Lines 30 and 31
+#
+#
 if [[ $# -ne 4 ]]; # check number of inputs to the script
 	then
 	echo ""
@@ -24,11 +26,11 @@ else
 	githubUsername=$3
 	tag=$4
 
-# Edit the next two lines to provide the user-specific information for their keychain
+# Edit the next two lines to provide your user-specific information for your keychain and PAT
   mac_user_name="rressler"  # mac OS user account name
-  mac_keychain_name="GitHub_PAT_Bash"   # the MAC OS keychain name for the GitHub personal access token
+  mac_keychain_name="github.com"   # the MAC OS keychain name for the GitHub personal access token
 
-  githubPassword=`security find-generic-password -s $mac_keychain_name -a $mac_user_name -w`
+  githubPassword=`security find-internet-password -a $mac_user_name -s $mac_keychain_name -w`
 
 	if [ "$tag" == "https" ];
 		then
@@ -50,7 +52,6 @@ else
 		# Get next page
 		tempJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100&page=$page" -v)
 		numRepos=$(echo "$tempJSON" | grep -o "full_name" | wc -l)
-
 		#concatenate tempJSON on to rawJSON
 		rawJSON=$rawJSON$tempJSON
 		((page++))

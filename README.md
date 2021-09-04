@@ -1,36 +1,47 @@
 # Intro
 
-This repo contains several bash script files to make it easier to use GitHub Classroom for assignments  
-The repo should be cloned to a non-repo directory for a given classroom organization, e.g.,'/assignments'   
-The scripts use GitHub api v3, curl 7.49.1 and grep 2.5.1
+This repo contains several bash script files to make it easier to use GitHub Classroom for pulling and grading students assignments. 
+
+The repo should be cloned to a non-repo directory for a given classroom organization, e.g.,'zStudent-assignments'
+
+The scripts use GitHub api v3, curl 7.49.1 and grep 2.5.1. They were originally developed by Brian Konzman and updated by Richard Ressler (rressler@american.edu) to enable using a GitHub PAT stored in a Mac OS Keychain
 
 # User Edits
-The user must edit the 'clone_all.sh' file to customize the parameters to themselves and for each classroom
 
-The user must edit the 'clone_all.sh' file to choose the option of entering a GitHub account password or Personal Access Token (PAT) interactively (each time), or storing their credentials in their Mac's keychain for automated entry.
 
-- If opting for the interactive version, use a # to comment out the line with the '* _mac_keychain.sh' and uncomment the line with the '* _pw_entry.sh'.  
-- If opting to use a credential stored in the Mac OS keychain utility, ensure that line is not commented out and the pw_entry line is commented out (using a #)  
+1. Edit the 'clone_all.sh' file to customize the parameters to themselves and for each classroom.
 
-If using the Mac OS keychain, the user also has to edit the 'clone_all_base_mac_keychain.sh' file to add their user information and the keychain Name for the GitHub credential.
+- organization="21F-DATA-413-613"  # Line 21 - the Github Classroom Organization with the student repos
+- GHusername="rressler"            # Line 22 - the instructor GitHub user name
+- protocol="https"                 # Line 23 - the protocol for connecting to GitHub (should be https)
+	
+2. Edit the 'clone_all.sh' file to choose the option of entering a GitHub account password or Personal Access Token (PAT) interactively (each time), or storing their credentials in their Mac's Keychain for automated entry.
+
+- If opting for the interactive version, use a "#"" to comment out line 28 with the '* _mac_keychain.sh' and un-comment line 29 with the '* _pw_entry.sh'.  
+- If opting to use a credential stored in the Mac OS Keychain utility, ensure line 28 is not commented out and the pw_entry line (line 29) is commented out (using a "#"")  
+
+3. If using the Mac OS Keychain, edit the 'clone_all_base_mac_keychain.sh' file to add your **MAC user information** in line 30 and the Keychain **Name** for the GitHub credential in line 31.
 
 # Usage
 Prior to first using the scripts, edit the one (or two) files as described in User Edits to ensure they have the correct parameters. 
-Example:  
-	- organization="STAT-413-613-Fall-2020"  
-	- GHusername="rressler"  
-	- protocol="https"  
-
-
+  
 Each time you want to grade an assignment:  
-1. Use a terminal window to navigate to the mass_clone directory.  
-2. Enter 'bash clone_all.sh identifier' where identifier is the name of the assignment used by GitHub Classroom as the prefix for each student's repo, e.g., bash clone_all.sh hw-01.  
+
+1. Use a terminal window to navigate to the mass_clone directory. (May want to make it an RStudio Project for ease of use)
+
+2. Enter 'bash clone_all.sh *identifier*' where *identifier* is the **name of the assignment used by GitHub Classroom as the prefix for each student's repo**, e.g., `bash clone_all.sh hw01`.  
+
 3. The script will then create a new folder with the name of the identifier and clone the new repos for each student under that folder.  
-4. If a student's repo already exists, the script will execute a git pull to update the repo.  
 
-Grade the assignment, making comments or changes to files as desired  
+4. If a student's repo already exists, the script will execute a `git pull` to update the repo.  
 
-After grading is complete, you can use the terminal window to run `bash push_all.sh identifier` to push your feedback to the students
+Grade the assignment, making comments to files as desired. If you want to change the code, you may want to create a branch to preserve the original code in the main branch.
+
+  - `branch instructor`  
+  - Then use `branch switch instructor` followed by 
+  - `git push origin instructor` to create the branch on GitHub.
+
+After grading is complete, you can use the terminal window to run `bash push_all.sh identifier` to push your feedback to the students.
 
 # Files
 ## clone_all_base_*.sh
