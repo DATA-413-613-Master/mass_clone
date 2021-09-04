@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # Runs clone_all_base.sh with defaults, designed to be user editable
-# e.g., once in the mass_clone directory run: bash clone_all_helper_example.sh hw-02
+# e.g., once in the mass_clone directory run: bash clone_all_helper_example.sh hw02
 
-# Written By: Brian Konzman and Updated by Richard Ressler to use Key Chain for Mac
+# Written By: Brian Konzman and Updated by Richard Ressler to use Keychain for Mac
 
 
 if [[ $# -ne 1 ]];
@@ -18,7 +18,7 @@ else
 	assignment=$1
 
 	#edit these variables to your defaults
-	organization="STAT-413-613-Fall-2020"
+	organization="21F-DATA-413-613"  #
 	GHusername="rressler"
 	protocol="https"
 

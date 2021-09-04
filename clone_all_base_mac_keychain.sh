@@ -1,12 +1,9 @@
 #!/bin/sh
-
 # github api reference
 # https://developer.github.com/v3/
+# Written By: Brian Konzman and Updated by Richard Ressler to allow for GitHUb PAT from Mac OS
 
-# Written By: Brian Konzman
-
-
-if [[ $# -ne 4 ]];
+if [[ $# -ne 4 ]]; # check number of inputs to the script
 	then
 	echo ""
 	echo "This script will clone groups of repos from an organization using an identifier"
@@ -27,7 +24,7 @@ else
 	githubUsername=$3
 	tag=$4
 
-# Edit the next two lines to provide the user specific information for their keychain
+# Edit the next two lines to provide the user-specific information for their keychain
   mac_user_name="rressler"  # mac OS user account name
   mac_keychain_name="GitHub_PAT_Bash"   # the MAC OS keychain name for the GitHub personal access token
 

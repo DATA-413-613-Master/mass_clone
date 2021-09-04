@@ -3,7 +3,6 @@
 # It will add all new files and commit them with a given message
 # It requires the folder name and a message
 
-
 if [[ $# -ne 1 ]];
 	then
 	echo "This script requires 1 parameter."

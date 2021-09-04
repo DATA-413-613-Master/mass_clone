@@ -1,2 +1,4 @@
-..DS_Store
+.DS_Store
 clone_all_helper.sh
+.Rproj.user
+mass_clone.Rproj
