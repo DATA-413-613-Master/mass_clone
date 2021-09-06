@@ -6,6 +6,16 @@ The repo should be cloned to a non-repo directory for a given classroom organiza
 
 The scripts use GitHub api v3, curl 7.49.1 and grep 2.5.1. They were originally developed by Brian Konzman and updated by Richard Ressler (rressler@american.edu) to enable using a GitHub PAT stored in a Mac OS Keychain
 
+If you have a windows machine, recommend installing GitHub [Classroom Assistant](https://classroom.github.com/assistant).  You can also use GitHub CA with a Mac. However, the scripts below provide Mac Users easier ability to automatically pull and push each set of repos over time.
+
+Once installed:
+
+- Go to the GitHub Classroom, click on the assignment, and click Download Repositories. 
+- Identify the location to download (you may have to click on the pencil to edit from /tmp) 
+- GitHub CA will create a date-time-stamped folder and clone each repo into it.
+  - Any students that have not accepted the assignment will be missing
+- If you download later, you will get a new date-time-stamped folder with the current repos.
+
 # User Edits
 
 
