@@ -58,12 +58,18 @@ Grade the assignment, making comments to files as desired. If you want to change
 
 After grading is complete, you can use the terminal window to run `bash push_all.sh identifier` to push your feedback to the students.
 
-# Notes
+# Other References
 
 If you would like to have osx remember your credentials to use https: see https://help.github.com/articles/caching-your-github-password-in-git/
 
 If you would like to setup an ssh key: see  https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 
 If you are running Windows, this stack post may help with ssh: https://stackoverflow.com/questions/18404272/running-ssh-agent-when-starting-git-bash-on-windows
+
+# Notes
+- These scripts were updated in Jan 2022.
+  - The scripts for different modes were combined into one script to allow all three modes: interactive mode (expected to be rare), mac keychain mode, or windows GCM mode.
+  - Now users only have to edit one file to set their configuration and it is easy to create multiple versions for different courses as they can all call the one base script.
+  - If the PAT is not already stored, the Github or GIT Credential manager will pop up and ask. Select the Token mode.
 
 

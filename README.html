@@ -223,11 +223,22 @@ pre code {
 </ul>
 <p>After grading is complete, you can use the terminal window to run <code>bash push_all.sh identifier</code> to push your feedback to the students.</p>
 </div>
-<div id="notes" class="section level1">
-<h1>Notes</h1>
+<div id="other-references" class="section level1">
+<h1>Other References</h1>
 <p>If you would like to have osx remember your credentials to use https: see <a href="https://help.github.com/articles/caching-your-github-password-in-git/" class="uri">https://help.github.com/articles/caching-your-github-password-in-git/</a></p>
 <p>If you would like to setup an ssh key: see <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" class="uri">https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/</a></p>
 <p>If you are running Windows, this stack post may help with ssh: <a href="https://stackoverflow.com/questions/18404272/running-ssh-agent-when-starting-git-bash-on-windows" class="uri">https://stackoverflow.com/questions/18404272/running-ssh-agent-when-starting-git-bash-on-windows</a></p>
+</div>
+<div id="notes" class="section level1">
+<h1>Notes</h1>
+<ul>
+<li>These scripts were updated in Jan 2022.
+<ul>
+<li>The scripts for different modes were combined into one script to allow all three modes: interactive mode (expected to be rare), mac keychain mode, or windows GCM mode.</li>
+<li>Now users only have to edit one file to set their configuration and it is easy to create multiple versions for different courses as they can all call the one base script.</li>
+<li>If the PAT is not already stored, the Github or GIT Credential manager will pop up and ask. Select the Token mode.</li>
+</ul></li>
+</ul>
 </div>
 
 
