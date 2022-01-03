@@ -20,7 +20,7 @@ if [[ $# -ne 1 ]]; #Check number of arguments
 else
 	assignment=$1
 
-	#edit these variables to be your defaults for a semester
+# edit these variables to be your defaults for a semester
 	organization="21F-DATA-413-613"  # Update for each semester
 	GHusername="rressler"
 	protocol="https" # "https" or "SSH"
