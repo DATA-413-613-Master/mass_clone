@@ -1,32 +1,33 @@
 #!/bin/sh
 
-# Runs a version of clone_all_base.sh with defaults, designed to be user editable
-# e.g., once in the mass_clone directory run: bash clone_all_helper_example.sh hw02
+# Runs clone_all_base_iwm.sh to clone/pull a set of GitHub student repos
+# Assumes the user has generated a GitHub PAT which
+# 1. is available for pasting into the console in interactive mode, or,
+# 2. is available from the mac Keychain or,
+# 3. is available from the GitHub Credential Manager on Windows
+#
+# Edit lines 23-26, and,if using mode mac, lines 27, and 28.
+# Written By: Richard Ressler based on work by Brian Konzman
 
-# Written By: Brian Konzman and Updated by Richard Ressler to use Keychain for Mac
-# Only edit lines 21, 22, and 23 for GitHub info and 28/29 to choose the mode of entry
-
-if [[ $# -ne 1 ]];
+if [[ $# -ne 1 ]]; #Check number of arguments
 	then
 	echo ""
-	echo "This script is designed to be edited by the user and will run clone_all_base.sh with defaults"
+	echo "This script should be edited by the user to set arguments for"
+	echo "running clone_all_base_iwm.sh"
 	echo ""
-	echo "Please provide 1 parameter:"
-	echo "1. Name of unique identifier(assignment)"
+	echo "Please provide 1 argument:"
+	echo "1. Name of the assignment on GitHub (e.g., hw01)"
 else
-
 	assignment=$1
 
-	#edit these variables to your defaults
-	organization="21F-DATA-413-613"  #
+	#edit these variables to be your defaults for a semester
+	organization="21F-DATA-413-613"  # Update for each semester
 	GHusername="rressler"
-	protocol="https"
+	protocol="https" # "https" or "SSH"
+	mode="mac" # "interactive", or "mac" or "windows"
+	mac_user_name="rressler"  # mac OS user account name
+  mac_keychain_name="github.com" # the MAC OS keychain name for the GitHub personal access token
 
-# Choose one of the following two lines to comment out: Line 1 is for using Passwords or PATs in Mac Keychain
-# Line 2 is for interactive entry of password or PAT
-# Line 1 requires editing the clone_all_base_mac_keychain.sh file to add the Mac user info for the PW/PAT
-	./clone_all_base_mac_keychain.sh ${organization} ${assignment} ${GHusername} ${protocol}
-#	./clone_all_base_pw_entry.sh ${organization} ${assignment} ${GHusername} ${protocol}
+# Call the function to clone/pull the student repos
+./clone_all_base_iwm.sh ${organization} ${assignment} ${GHusername} ${protocol} ${mode} ${mac_user_name} ${mac_keychain_name}
 fi
-
-
