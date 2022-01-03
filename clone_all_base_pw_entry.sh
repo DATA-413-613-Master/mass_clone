@@ -57,7 +57,7 @@ path=$organization"| git credential fill )
 # grep uses the -Po option for perl Regex to allow the use of the regex look-behind
 # and not keep 'password='' in the output - just the PAT
 githubPassword=$(echo $githubPassword | grep -Po "(?<= password=).*")
-
+githubPassword=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
 
 	# Get the first page of repo results (100 entries)
 	rawJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100")

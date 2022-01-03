@@ -53,25 +53,26 @@ else
   	read  -s githubPassword
   elif [ "$mode" == "mac" ];
   then
+		echo "mode mac"
     githubPassword=`security find-internet-password -a $mac_user_name -s $mac_keychain_name -w`
   else
     # For mode windows using git credential manager
     # git credential fill must be set up with a multi-line input
     # it returns a multi line output to stdoutput including the PAT
     # as the password element
-
-    githubPassword=$(echo "host=github.com
-    protocol=https
-    path=$organization"| git credential fill )
+		echo "mode windows"
+# Note code must be aligned fully to the left, no indents for multi-line input
+githubPassword=$(echo "host=github.com
+protocol=https
+path=$organization "| git credential fill )
 
     # echo  requires the use of no quotes to collapse githubPassword to one line
     # for grep
     # grep uses the -Po option for perl Regex to allow the use of the regex look-behind
     # and not keep 'password=' in the output - just the PAT
-
     githubPassword=$(echo $githubPassword | grep -Po "(?<= password=).*")
   fi
-
+	
 	# Get the first page of repo results (100 entries)
 	rawJSON=$(curl --user  "$githubUsername:$githubPassword" "https://api.github.com/orgs/$organization/repos?per_page=100")
 

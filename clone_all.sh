@@ -24,7 +24,7 @@ else
 	organization="21F-DATA-413-613"  # Update for each semester
 	GHusername="rressler"
 	protocol="https" # "https" or "SSH"
-	mode="mac" # "interactive", or "mac" or "windows"
+	mode="windows" # "interactive", or "mac" or "windows"
 	mac_user_name="rressler"  # mac OS user account name
   mac_keychain_name="github.com" # the MAC OS keychain name for the GitHub personal access token
 
