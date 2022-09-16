@@ -21,7 +21,7 @@ else
 	assignment=$1
 
 # edit these variables to be your defaults for a semester
-	organization="22F-DATA-413-613"  # Update for each semester
+	organization="21F-DATA-413-613"  # Update for each semester
 	GHusername="rressler"
 	protocol="https" # "https" or "SSH"
 	mode="mac" # "interactive", or "mac" or "windows"
